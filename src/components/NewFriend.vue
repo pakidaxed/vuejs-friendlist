@@ -47,7 +47,6 @@ export default {
   width: 400px;
   margin: 0 auto 10px auto;
   padding: 15px;
-  border: 1px solid black;
   border-radius: 10px;
   box-sizing: border-box;
 }
@@ -62,12 +61,12 @@ label {
 
 input {
   width: 40%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  border-radius: 5px;
   padding: 5px;
   box-sizing: border-box;
+  outline: none;
+  margin-bottom: 5px;
 }
 
 </style>
