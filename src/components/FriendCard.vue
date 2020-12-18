@@ -47,6 +47,13 @@ export default {
   border-radius: 10px;
   margin-bottom: 10px;
   position: relative;
+  opacity: 80%;
+  transition: opacity 1s;
+}
+
+.friend-card:hover {
+  opacity: 100%;
+  transition: opacity 1s;
 }
 
 .delete {
