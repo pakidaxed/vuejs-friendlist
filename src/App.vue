@@ -5,7 +5,10 @@
   </div>
   <new-friend v-if="showAddNewFriendForm" @add-new-friend="addNewFriend"/>
   <div class="friends-container">
-    <friend-card v-for="friend in friends" :key="friend.id" :friend="friend" @add-to-favourites="addToFavourites"/>
+    <friend-card v-for="friend in friends" :key="friend.id" :friend="friend"
+                 @add-to-favourites="addToFavourites"
+                 @delete-friend="deleteFriend"
+    />
   </div>
 </template>
 
@@ -74,6 +77,10 @@ export default {
     },
     addNewFriend(friendObj) {
       this.friends.push(friendObj)
+    },
+    deleteFriend(friendId) {
+      console.log(friendId)
+      this.friends.splice(friendId, 1)
     }
   }
 }
@@ -94,9 +101,11 @@ export default {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
 .buttons {
   margin-bottom: 10px;
 }
+
 button {
   margin-top: 10px;
   padding: 5px 15px;
@@ -107,6 +116,7 @@ button {
   outline: none;
   cursor: pointer;
 }
+
 span {
   cursor: pointer;
 }

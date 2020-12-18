@@ -1,5 +1,6 @@
 <template>
   <div class="friend-card">
+    <span class="delete" @click="deleteFriend">X</span>
     <h1><span :style="{color: friend.isFavourite ? 'orange' : 'black'}" @click="addToFavourites">☆</span> {{ friend.name }}</h1>
     <span class="details" @click="toggleShowMore">Show details</span>
     <div class="show-more" v-if="showMore">
@@ -19,7 +20,7 @@ export default {
       required: true
     }
   },
-  emits: ['add-to-favourites'],
+  emits: ['add-to-favourites', 'delete-friend'],
   data() {
     return {
       showMore: false
@@ -31,6 +32,9 @@ export default {
     },
     addToFavourites() {
       this.$emit('add-to-favourites', this.friend.id)
+    },
+    deleteFriend() {
+      this.$emit('delete-friend', this.friend.id)
     }
   }
 }
@@ -42,6 +46,19 @@ export default {
   width: 400px;
   border-radius: 10px;
   margin-bottom: 10px;
+  position: relative;
+}
+
+.delete {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: gray;
+  font-weight: bold;
+}
+
+.delete:hover {
+  color: crimson;
 }
 
 .friend-card .details {
