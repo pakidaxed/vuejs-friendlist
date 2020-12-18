@@ -1,20 +1,26 @@
 <template>
   <h1>VUE Friends List</h1>
-  <div class="friends-container" >
-  <FriendCard v-for="friend in friends" :key="friend.id" :friend="friend" @add-to-favourites="addToFavourites"/>
+  <div class="buttons">
+    <button @click="showAddNewFriendForm = !showAddNewFriendForm">+</button>
+  </div>
+  <new-friend v-if="showAddNewFriendForm" @add-new-friend="addNewFriend"/>
+  <div class="friends-container">
+    <friend-card v-for="friend in friends" :key="friend.id" :friend="friend" @add-to-favourites="addToFavourites"/>
   </div>
 </template>
 
 <script>
 import FriendCard from "@/components/FriendCard";
+import NewFriend from "@/components/NewFriend";
 
 export default {
   name: 'App',
   components: {
-    FriendCard
+    FriendCard, NewFriend
   },
   data() {
     return {
+      showAddNewFriendForm: false,
       friends: [
         {
           id: 'petras77',
@@ -65,6 +71,9 @@ export default {
     addToFavourites(friendId) {
       const user = this.friends.find(x => x.id === friendId)
       user.isFavourite = !user.isFavourite
+    },
+    addNewFriend(friendObj) {
+      this.friends.push(friendObj)
     }
   }
 }
@@ -79,9 +88,26 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 .friends-container {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+}
+.buttons {
+  margin-bottom: 10px;
+}
+button {
+  margin-top: 10px;
+  padding: 5px 15px;
+  background-color: crimson;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+}
+span {
+  cursor: pointer;
 }
 </style>

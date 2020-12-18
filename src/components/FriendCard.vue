@@ -1,6 +1,7 @@
 <template>
   <div class="friend-card">
-    <h1 :style="{color: friend.isFavourite ? 'red' : 'black'}" @click="addToFavourites">{{ friend.name }} <span @click="toggleShowMore">Details</span></h1>
+    <h1><span :style="{color: friend.isFavourite ? 'orange' : 'black'}" @click="addToFavourites">☆</span> {{ friend.name }}</h1>
+    <span class="details" @click="toggleShowMore">Show details</span>
     <div class="show-more" v-if="showMore">
       <p>ID: {{ friend.id }}</p>
       <p>Phone: {{ friend.phone }}</p>
@@ -18,6 +19,7 @@ export default {
       required: true
     }
   },
+  emits: ['add-to-favourites'],
   data() {
     return {
       showMore: false
@@ -42,14 +44,14 @@ export default {
   margin-bottom: 10px;
 }
 
-.friend-card span {
+.friend-card .details {
   font-size: 11px;
-  border-left: 3px solid crimson;
+  border-bottom: 3px solid crimson;
   padding: 2px 5px;
   transition: background-color 1s, color 1s;
 }
 
-.friend-card span:hover {
+.friend-card .details:hover {
   cursor: pointer;
   background-color: crimson;
   color: white;
