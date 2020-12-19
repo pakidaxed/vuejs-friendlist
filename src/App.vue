@@ -5,10 +5,14 @@
   </div>
   <new-friend v-if="showAddNewFriendForm" @add-new-friend="addNewFriend"/>
   <div class="friends-container">
-    <friend-card v-for="friend in friends" :key="friend.id" :friend="friend"
-                 @add-to-favourites="addToFavourites"
-                 @delete-friend="deleteFriend"
+    <friend-card
+        v-for="friend in friends"
+        :key="friend.id"
+        :friend="friend"
+        @add-to-favourites="addToFavourites"
+        @delete-friend="deleteFriend"
     />
+    <p v-if="friends.length <= 0">No friends in the list</p>
   </div>
 </template>
 
