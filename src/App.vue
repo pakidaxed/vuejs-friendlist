@@ -77,10 +77,11 @@ export default {
     },
     addNewFriend(friendObj) {
       this.friends.push(friendObj)
+      this.showAddNewFriendForm = false
     },
     deleteFriend(friendId) {
-      console.log(friendId)
-      this.friends.splice(friendId, 1)
+      const friendIndex = this.friends.map(x => x.id === friendId)
+      this.friends.splice(friendIndex.indexOf(true), 1)
     }
   }
 }
