@@ -84,8 +84,7 @@ export default {
       this.showAddNewFriendForm = false
     },
     deleteFriend(friendId) {
-      const friendIndex = this.friends.map(x => x.id === friendId)
-      this.friends.splice(friendIndex.indexOf(true), 1)
+      this.friends = this.friends.filter(x => x.id !== friendId)
     }
   }
 }
